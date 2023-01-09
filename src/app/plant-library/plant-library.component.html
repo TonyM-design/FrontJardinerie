@@ -1,0 +1,117 @@
+<p>plant-library works!</p>
+
+<button
+  type="button"
+  class="btn btn-outline-secondary me-2"
+  placement="top"
+  ngbTooltip="Tooltip on top"
+>
+  Tooltip on top
+</button>
+
+<div class="container p-5">
+  <h1 class="mb-5">therichpost.com</h1>
+  <button
+    type="button"
+    class="btn btn-secondary me-2"
+    data-bs-container="body"
+    data-bs-toggle="popover"
+    data-bs-placement="top"
+    data-bs-content="Top popover"
+  >
+    Popover on top
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary me-2"
+    data-bs-container="body"
+    data-bs-toggle="popover"
+    data-bs-placement="right"
+    data-bs-content="Right popover"
+  >
+    Popover on right
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary me-2"
+    data-bs-container="body"
+    data-bs-toggle="popover"
+    data-bs-placement="bottom"
+    data-bs-content="Bottom popover"
+  >
+    Popover on bottom
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary me-2"
+    data-bs-container="body"
+    data-bs-toggle="popover"
+    data-bs-placement="left"
+    data-bs-content="Left popover"
+  >
+    Popover on left
+  </button>
+</div>
+
+<div class="container" id="main-container">
+  <div class="row">
+    <div *ngFor="let plante of planteListe" class="col-md-6 col-xl-3">
+      <div class="card m-b-30">
+        <div class="card-body row">
+          <div class="col-6">
+            <a href=""
+              ><img
+                src="assets\img\Sy6msClCw5.jpg"
+                alt=""
+                class="img-fluid w-60"
+            /></a>
+          </div>
+          <div class="col-6 card-title align-self-center mb-0">
+            <h5>{{plante?.nom}}</h5>
+            <p class="m-0">{{plante?.prix}}€ / pièce</p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" #planteExposition>
+            <i style="color:red" (click)="getValue()">{{plante?.exposition}}</i>
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-phone float-right"></i>description :
+            {{plante?.description}}
+          </li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <a
+              (click)="onOpenModal(plante, 'edit')"
+              class="btn btn-outline-success tooltips m-2"
+              data-placement="top"
+              data-original-title="Edit"
+              ><i class="bi bi-cart-plus"> Ajouter au panier</i>
+            </a>
+            <a
+              (click)="onOpenModal(plante, 'delete')"
+              class="btn btn-outline-danger tooltips m-2"
+              data-placement="top"
+              data-original-title="Delete"
+              ><i
+                class="bi bi-trash
+"
+              >
+                Supprimer l'article</i
+              ></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification for no employees -->
+  <div *ngIf="plantes?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">PAS DE PLANTE!</h4>
+      <p>Aucune plantes trouvées dans la base.</p>
+    </div>
+  </div>
+</div>
